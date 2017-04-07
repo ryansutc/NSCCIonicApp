@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Free Rooms</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Ionic Menu Starter</h3>
+
+  <p>
+    This is the free room page.
+  </p>
+  <ion-label>{{getNow()}}</ion-label>
+  <ion-item>
+    <ion-label>Start Time</ion-label>
+    <ion-datetime displayFormat="h:mm A"  pickerFormat="h mm A" minuteValues ="0,15,30,45" [(ngModel)]="now"></ion-datetime>
+  </ion-item>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+
+
+  <ion-list>
+    <!--
+    <ion-item *ngFor="let room of rooms">
+      {{room}}
+
+    </ion-item>
+    -->
+  </ion-list>
+
+</ion-content>
