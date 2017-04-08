@@ -22,7 +22,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Campus</ion-label>
-      <ion-select [(ngModel)]="selCampus">
+      <ion-select [(ngModel)]="selCampus" (ngModelChange)="CampusChange($event)">
         <ion-option *ngFor="let campus of campuses" [value]="campus.campusId">{{campus.campusName}}</ion-option>
       </ion-select>
     </ion-item>
@@ -32,11 +32,19 @@
     <ion-item>
       <ion-label>Building</ion-label>
       <ion-select [(ngModel)]="selBuilding">
-        <ion-option *ngFor="let building of buildings" [value]="building.campusId">{{campus.campusName}}</ion-option>
+        <ion-option *ngFor="let building of optionBuildings" [value]="building.buildingId">{{building.buildingName}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
-
+  <div *ngIf="optionBuildings.length > 0">
+    <h2>
+      {{optionBuildings[0].buildingName | uppercase}} is the first
+    </h2>
+  </div>
+  <div>
+    <h3>{{selBuilding}}</h3>
+    <h3>{{selCampus}}</h3>
+  </div>
   <button ion-button secondary menuToggle>Toggle Menu</button>
 
 
