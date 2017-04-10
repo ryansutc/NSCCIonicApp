@@ -8,45 +8,46 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>Find A Free Room</h3>
 
-  <p>
-    This is the free room page.
-  </p>
   <ion-label>{{getNow()}}</ion-label>
   <ion-item>
     <ion-label>Start Time</ion-label>
-    <ion-datetime displayFormat="h:mm A"  pickerFormat="h mm A" minuteValues ="0,15,30,45" [(ngModel)]="now"></ion-datetime>
+    <ion-datetime displayFormat="h:mm A"  pickerFormat="h mm A" minuteValues ="0,15,30,45" [(ngModel)]="selStartTime"
+                  id="StartTime"></ion-datetime>
   </ion-item>
 
   <ion-list>
     <ion-item>
       <ion-label>Campus</ion-label>
-      <ion-select [(ngModel)]="selCampus" (ngModelChange)="CampusChange($event)">
+      <ion-select [(ngModel)]="selCampus" (ngModelChange)="CampusChange($event)" id="Campus">
         <ion-option *ngFor="let campus of campuses" [value]="campus.campusId">{{campus.campusName}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <p>Selected Value: {{ selCampus }}</p>
+  <ion-list>
+    <ion-item>
+      <ion-label>Building</ion-label>
+      <ion-select [(ngModel)]="selBuilding" (ngModelChange)="BuildingChange($event)" id="Building">
+        <ion-option *ngFor="let building of optionBuildings" [value]="building.buildingId">{{building.buildingName}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
   <ion-list>
     <ion-item>
-      <ion-label>Building</ion-label>
-      <ion-select [(ngModel)]="selBuilding">
-        <ion-option *ngFor="let building of optionBuildings" [value]="building.buildingId">{{building.buildingName}}</ion-option>
+      <ion-label>Room Type</ion-label>
+      <ion-select [(ngModel)]="selRoomType" id="RoomType">
+        <ion-option *ngFor="let roomtype of optionRoomTypes" [value]="roomtype">{{roomtype}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
-  <div *ngIf="optionBuildings.length > 0">
-    <h2>
-      {{optionBuildings[0].buildingName | uppercase}} is the first
-    </h2>
-  </div>
-  <div>
-    <h3>{{selBuilding}}</h3>
-    <h3>{{selCampus}}</h3>
-  </div>
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 
+  <button ion-button secondary (click)="openResultsPage()">Show Results</button>
+  <ion-content has-header="true" padding="true">
+    <a class="button icon-right ion-chevron-right" href="#/second">Go to the second page!</a>
+  </ion-content>
 
 
 </ion-content>

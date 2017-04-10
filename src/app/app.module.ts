@@ -5,20 +5,24 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { FreeRoomPage } from '../pages/freeroom/freeroom';
+import {FreeRoomPage, FreeRoomResultsPage} from '../pages/freeroom/freeroom';
+//import { FreeRoomResultsBasicPage } from '../pages/freeroomresults/freeroomresults';
 //import { FreeRoomService } from 'freeroom.service'; //should this be in same directory?
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpModule }    from '@angular/http';
+import {FreeRoomResultsBasicPage} from "../pages/freeroomresults/freeroomresults";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    FreeRoomPage
+    FreeRoomPage,
+    FreeRoomResultsPage,
+    FreeRoomResultsBasicPage
     //FreeRoomService
   ],
   imports: [
@@ -32,6 +36,8 @@ import { HttpModule }    from '@angular/http';
     HomePage,
     ListPage,
     FreeRoomPage,
+    FreeRoomResultsPage,
+    FreeRoomResultsBasicPage
     //FreeRoomService
   ],
   providers: [
