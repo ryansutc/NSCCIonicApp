@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpModule }    from '@angular/http';
 import {FreeRoomResultsBasicPage} from "../pages/freeroomresults/freeroomresults";
+import {CalendarPage} from "../pages/calendar/calendar";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {FreeRoomResultsBasicPage} from "../pages/freeroomresults/freeroomresults
     ListPage,
     FreeRoomPage,
     FreeRoomResultsPage,
-    FreeRoomResultsBasicPage
+    FreeRoomResultsBasicPage,
+    CalendarPage
     //FreeRoomService
   ],
   imports: [
@@ -37,7 +39,8 @@ import {FreeRoomResultsBasicPage} from "../pages/freeroomresults/freeroomresults
     ListPage,
     FreeRoomPage,
     FreeRoomResultsPage,
-    FreeRoomResultsBasicPage
+    FreeRoomResultsBasicPage,
+    CalendarPage
     //FreeRoomService
   ],
   providers: [

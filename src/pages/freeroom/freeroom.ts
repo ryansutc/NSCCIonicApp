@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map'; //reactive extensions library and Observables
 import {MomentModule} from 'angular2-moment/module';
 import * as moment from 'moment';
 import {Building} from "../../app/building";
+import {ListPage} from "../list/list";
+import {CalendarPage} from "../calendar/calendar";
 
 
 //NEW RESULTS PAGE
@@ -115,9 +117,15 @@ export class FreeRoomResultsPage {
     return (($endTimeDate.getTime() - $startTimeDate.getTime()) /60) / 1000;
 
   }
+
+  itemTapped(event, room) {
+    // That's right, we're pushing to ourselves!
+    //alert(room.Room);
+    this.navCtrl.push(CalendarPage, {
+      roomname: room.Room
+    });
+  }
 }
-
-
 
 
 //------------------------------------------------
