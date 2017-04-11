@@ -28,7 +28,8 @@ export class FreeRoomResultsPage {
     let campus = this.navParams.get('campus');
     let building = this.navParams.get('building');
     let roomtype = this.navParams.get('roomtype');
-    let starttime = this.navParams.get('starttime');
+    let timeparse = this.navParams.get('starttime').split(':');
+    let starttime = timeparse[0]+ "" + timeparse[1];
     let myday = this.GetDayOfWeekString(this.day.getDay());
     let url = 'http://nsccsucks.xyz/FreeRoomUntil/roomData/' + campus + '/'
       + building + '/' + starttime + '/' + myday + '/' + roomtype;
@@ -36,7 +37,12 @@ export class FreeRoomResultsPage {
     ////http://nsccsucks.xyz/FreeRoomUntil/roomData/INSTI/ITC/0800/Wednesday
     this.http.get(url).map(res => res.json()).subscribe(data => {
         for (let room of data) {
-          this.rooms.push(room);
+          let roomResults = {
+            Room: room.Room,
+            AvailUntil: room.AvailUntil,
+            AvailMsg: this.GetTimeLengthMsg(this.navParams.get('starttime'), room.AvailUtil)
+          };
+          this.rooms.push(roomResults);
         }
         //this.rooms = data;
         //console.log(this.rooms);
@@ -71,6 +77,43 @@ export class FreeRoomResultsPage {
     weekday[6] = "Saturday";
 
     return weekday[dayInt];
+  }
+
+  GetTimeLengthMsg(startTime: Date, AvailUntil: Date): string {
+    let AvailMsg = '';
+
+    if(AvailUntil){
+      let $timeLength = this.GetTimeLength(startTime, AvailUntil);
+      let $hrLength = Math.floor($timeLength/60);
+      let $minLength = $timeLength % 60;
+      if($timeLength >= 120){
+        AvailMsg = "Available for next ~" + $hrLength + " hours";
+      }
+      else if($timeLength > 60) {
+        AvailMsg = "Available for next hour and " + $minLength + " mins";
+      }
+      else if($timeLength == 60){
+        AvailMsg = "Available for next hour";
+      }
+      else {
+        AvailMsg = "Available for next " + $minLength + " minutes";
+      }
+    }
+    else {
+      AvailMsg = "Available rest of day";
+    }
+    return AvailMsg;
+  }
+
+
+  GetTimeLength(startTime, endTime): number {
+    let $endTimeStr = endTime.toString();
+    let hours = Number($endTimeStr.match(/^(\d+)/)[1]);
+    let minutes = Number($endTimeStr.match(/:(\d+)/)[1]);
+    let $endTimeDate =  new Date(1,1,1,hours,minutes);
+    let $startTimeDate = new Date(1,1,1, startTime.toString().substr(0,2), startTime.toString().substr(2,2));
+    return (($endTimeDate.getTime() - $startTimeDate.getTime()) /60) / 1000;
+
   }
 }
 
