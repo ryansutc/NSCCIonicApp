@@ -16,6 +16,11 @@ import { HttpModule }    from '@angular/http';
 import {FreeRoomResultsBasicPage} from "../pages/freeroomresults/freeroomresults";
 import {CalendarPage} from "../pages/calendar/calendar";
 
+import * as jQuery from "jquery"
+import { MomentModule } from 'angular2-moment';
+import { ScheduleModule } from 'primeng/primeng';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,7 +35,9 @@ import {CalendarPage} from "../pages/calendar/calendar";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    MomentModule,
+    ScheduleModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

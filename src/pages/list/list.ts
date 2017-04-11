@@ -19,17 +19,29 @@ export class ListPage {
     'american-football', 'boat', 'bluetooth', 'build'];
 
     this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    this.items.push({
+      title: 'Locate',
+      note: 'View NSCC Room Map (non mobile)',
+      icon: this.icons[5]
+    });
+    this.items.push({
+      title: 'RoomSchedule',
+      note: 'View NSCC Room Calendar (non mobile)',
+      icon: this.icons[1]
+    });
+    this.items.push({
+      title: 'About',
+      note: 'View NSCC Room Calendar (non mobile)',
+      icon: this.icons[1]
+    });
   }
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
+    if(item.title != 'About'){
+      window.location.href='http://nsccsucks.xyz/' + item.title;//'item.title';
+    }
+
     this.navCtrl.push(ListPage, {
       item: item
     });
