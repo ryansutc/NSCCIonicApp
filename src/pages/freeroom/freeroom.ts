@@ -154,6 +154,7 @@ export class FreeRoomPage implements OnInit {
           this.buildings.push(buildingObj);
         }
         this.campuses = this.getUniqueListOfCampuses();
+        this.CampusChange('INSTI'); //HACK FOR NOW [todo: fix to make dynamic]
         //this.selBuilding = this.optionBuildings[0].buildingId;
       },
       err => {
