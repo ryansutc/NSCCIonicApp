@@ -40,7 +40,7 @@ export class FreeRoomResultsPage {
           let roomResults = {
             Room: room.Room,
             AvailUntil: room.AvailUntil,
-            AvailMsg: this.GetTimeLengthMsg(this.navParams.get('starttime'), room.AvailUtil)
+            AvailMsg: this.GetTimeLengthMsg(this.navParams.get('starttime'), room.AvailUntil)
           };
           this.rooms.push(roomResults);
         }
@@ -106,12 +106,12 @@ export class FreeRoomResultsPage {
   }
 
 
-  GetTimeLength(startTime, endTime): number {
+  GetTimeLength(startTime: Date, endTime: Date): number {
     let $endTimeStr = endTime.toString();
     let hours = Number($endTimeStr.match(/^(\d+)/)[1]);
     let minutes = Number($endTimeStr.match(/:(\d+)/)[1]);
     let $endTimeDate =  new Date(1,1,1,hours,minutes);
-    let $startTimeDate = new Date(1,1,1, startTime.toString().substr(0,2), startTime.toString().substr(2,2));
+    let $startTimeDate = new Date(1,1,1, Number(startTime.toString().substr(0,2)), Number(startTime.toString().substr(3,2)));
     return (($endTimeDate.getTime() - $startTimeDate.getTime()) /60) / 1000;
 
   }

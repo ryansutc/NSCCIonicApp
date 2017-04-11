@@ -12,7 +12,7 @@
     <ion-item *ngFor="let room of rooms">
       Room  {{room.Room}}
       <span>{{room.AvailUntil}}</span>
-      <span>{{GetTimeLengthMsg(this.navParams.get('starttime'), room.AvailUtil)}}</span>
+      <span>{{room.AvailMsg}}</span>
     </ion-item>
   </ion-list>
 </ion-content>
